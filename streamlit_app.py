@@ -65,7 +65,7 @@ if len(list_tickers)<6:
     exec(f"{lines} = st.columns({len(list_tickers)})")
 
     for i in range(len(list_tickers)):
-        exec(f"col{i}.metric('{list_tickers[i]}', '{np.round(database.dropna().iloc[-1,:][i], 2)}', '{np.round(database.pct_change(1).iloc[-1,:][i]*100, 3)}')")
+        exec(f"col{i}.metric('{database.columns[i]}', '{np.round(database.dropna().iloc[-1,:][i], 2)}', '{np.round(database.pct_change(1).iloc[-1,:][i]*100, 3)}')")
 
 else:
     command1 = []
@@ -80,11 +80,11 @@ else:
 
     exec(f"{lines1} = st.columns({6})")
     for i in range(6):
-        exec(f"col{i}.metric('{list_tickers[i]}', '{np.round(database.dropna().iloc[-1,:][i], 2)}', '{np.round(database.pct_change(1).iloc[-1,:][i]*100, 3)}')")
+        exec(f"col{i}.metric('{database.columns[i]}', '{np.round(database.dropna().iloc[-1,:][i], 2)}', '{np.round(database.pct_change(1).iloc[-1,:][i]*100, 3)}')")
 
     exec(f"{lines2} = st.columns({6})")
     for i in range(6, 11):
-        exec(f"col{i}.metric('{list_tickers[i]}', '{np.round(database.dropna().iloc[-1,:][i], 2)}', '{np.round(database.pct_change(1).iloc[-1,:][i]*100, 3)}')")
+        exec(f"col{i}.metric('{database.columns[i]}', '{np.round(database.dropna().iloc[-1,:][i], 2)}', '{np.round(database.pct_change(1).iloc[-1,:][i]*100, 3)}')")
 
 
 
