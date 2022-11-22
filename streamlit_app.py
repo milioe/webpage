@@ -65,7 +65,7 @@ if len(list_tickers)<6:
     exec(f"{lines} = st.columns({len(list_tickers)})")
 
     for i in range(len(list_tickers)):
-        exec(f"col{i}.metric('{list_tickers[i]}', '{np.round(database.dropna().iloc[-1,:][i], 2)}', '{np.round(database.pct_change(1).iloc[-1,:][i], 3)}')")
+        exec(f"col{i}.metric('{list_tickers[i]}', '{np.round(database.dropna().iloc[-1,:][i], 2)}', '{np.round(database.pct_change(1).iloc[-1,:][i]*100, 3)}')")
 
 else:
     command1 = []
@@ -80,11 +80,11 @@ else:
 
     exec(f"{lines1} = st.columns({6})")
     for i in range(6):
-        exec(f"col{i}.metric('{list_tickers[i]}', '{np.round(database.dropna().iloc[-1,:][i], 2)}', '{np.round(database.pct_change(1).iloc[-1,:][i], 3)}')")
+        exec(f"col{i}.metric('{list_tickers[i]}', '{np.round(database.dropna().iloc[-1,:][i], 2)}', '{np.round(database.pct_change(1).iloc[-1,:][i]*100, 3)}')")
 
     exec(f"{lines2} = st.columns({6})")
     for i in range(6, 11):
-        exec(f"col{i}.metric('{list_tickers[i]}', '{np.round(database.dropna().iloc[-1,:][i], 2)}', '{np.round(database.pct_change(1).iloc[-1,:][i], 3)}')")
+        exec(f"col{i}.metric('{list_tickers[i]}', '{np.round(database.dropna().iloc[-1,:][i], 2)}', '{np.round(database.pct_change(1).iloc[-1,:][i]*100, 3)}')")
 
 
 
@@ -197,7 +197,7 @@ with wcol:
         value = database.iloc[-1,:].sum(),
         number = {'prefix': "$"},
         #title = {"text": "Total in USD<br><span style='font-size:0.8em;color:gray'>Subtitle</span><br><span style='font-size:0.8em;color:gray'>Subsubtitle</span>"}
-        title = {"text": "Total in USD<br><span style='font-size:0.8em;color:gray'>Assuming 1 share bought</span><br><span style='font-size:0.8em;color:gray'>"}
+        title = {"text": "Total USD to be spent<br><span style='font-size:0.8em;color:gray'>Assuming just 1 share is bought</span><br><span style='font-size:0.8em;color:gray'>"}
         ))
 
     st.plotly_chart(fig, use_container_width=True)
