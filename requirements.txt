@@ -53,6 +53,7 @@ opt-einsum==3.3.0
 pandas==1.5.1
 pandas-profiling==3.4.0
 patsy==0.5.3
+plotly==5.11.0
 phik==0.12.2
 protobuf==3.19.6
 pyarrow==10.0.0
