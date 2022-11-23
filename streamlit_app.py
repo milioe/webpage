@@ -43,7 +43,8 @@ if gen_spaces_button:
 
 
 # importation of data
-list_tickers = ["EWC","IAU", "IVV", "QQQ", "VGK", "XLC", "XLE", "XLF", "XLK", "XLV", "EWZ"]
+list_tickers = ["EWC","IAU", "IVV", "QQQ", "VGK", "XLC", "XLE", "XLF", "XLK", "XLV", "EWZ", "IEF"]
+#list_tickers = [ "XLV"]
 database = yf.download(list_tickers)
 
 
@@ -52,7 +53,7 @@ database = database["Adj Close"]
 
 
 
-if len(list_tickers)<6:
+if len(list_tickers)<7:
     # Lista vacía para guardar nombres de variables
     command = []
     for i in range(len(list_tickers)):
@@ -72,7 +73,7 @@ else:
     command2 = []
     for i in range(6):
         command1.append(f"col{i}")
-    for i in range(6, 12):
+    for i in range(6, 12):##################################
         command2.append(f"col{i}")
 
     lines1 = ', '.join(command1)
@@ -83,7 +84,7 @@ else:
         exec(f"col{i}.metric('{database.columns[i]}', '{np.round(database.dropna().iloc[-1,:][i], 2)}', '{np.round(database.pct_change(1).iloc[-1,:][i]*100, 3)}')")
 
     exec(f"{lines2} = st.columns({6})")
-    for i in range(6, 11):
+    for i in range(6, 12):##################################
         exec(f"col{i}.metric('{database.columns[i]}', '{np.round(database.dropna().iloc[-1,:][i], 2)}', '{np.round(database.pct_change(1).iloc[-1,:][i]*100, 3)}')")
 
 
